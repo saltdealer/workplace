@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
         memset(myblock,1,
                     MEGABYTE);
         printf("Currently  allocatinn  %d  MB\n",++count);
-        usleep(20000);
+        usleep(2000);
     }
     exit(0);
 
