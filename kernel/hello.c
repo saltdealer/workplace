@@ -13,9 +13,19 @@ static int __init lkp_init(void)
 {
     printk("<1>Hello ,Word! p_pid%d(%s)  pid %d(%s)\n", current->parent->pid, current->parent->comm,
                 current->pid, current->comm);
+    struct task_struct *pos;
+    struct list_head *current_head;
+    int count =0;
+    current_head = &(current->tasks);
+    list_for_each_entry(pos,current_head,tasks)
+    {
+        count ++;
+        tty_write_message1(current->signal->tty,msg1);
+        printk(" precess %d,%s\'s pid is %d\n",count,pos->comm,pos->pid);
+    }
 
-    char *msg = "hello tty!\n";
-   tty_write_message1(current->signal->tty,msg); 
+//    char *msg = "hello tty!\n";
+//   tty_write_message1(current->signal->tty,msg); 
     return 0;
 }
 
